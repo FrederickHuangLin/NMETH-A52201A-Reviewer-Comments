@@ -26,19 +26,6 @@ library(MicrobiomeStat)
 library(LOCOM)
 ```
 
-```{r helper}
-logsumexp = function (x) {
-  y = max(x)
-  y + log(sum(exp(x - y)))
-}
-
-softmax = function (x) {
-  exp(x - logsumexp(x))
-}
-
-wb = createWorkbook()
-```
-
 # Test for a binary exposure {.tabset}
 
 1 binary exposure + 1 continuous confounder
@@ -658,6 +645,9 @@ fig_fdr_bin = df_fig %>%
 
 fig_bin = ggarrange(fig_fdr_bin, fig_power_bin, 
                     ncol = 1, common.legend = TRUE)
+
+ggsave(filename = "../results/5_iter_fig.jpeg", units = "in", dpi = 300,
+       width = 10, height = 8)
 
 fig_bin
 ```
